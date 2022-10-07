@@ -32,6 +32,10 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Assets
+/assets/pdfs
+/assets/epub
+
 # Web related
 lib/generated_plugin_registrant.dart
 
