@@ -1,6 +1,6 @@
 import 'package:book_reader/Screens/Bookmark.dart';
 import 'package:book_reader/Screens/dashboard.dart';
-import 'package:book_reader/Screens/reading.dart';
+import 'package:book_reader/Screens/library.dart';
 import 'package:book_reader/Screens/settings.dart';
 import 'package:book_reader/Utils/my_librabry.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           },
         ),
-        ReadingPage(),
+        LibraryPage(),
         BookmarkPage(),
         SettingsPage(),
         // MainScreen(

@@ -87,6 +87,7 @@ class _DashBoardState extends State<DashBoard> {
                       : const EdgeInsets.only(right: 5, top: 10, bottom: 10),
                   child: InkWell(
                     onTap: () {
+                      bookLibrary.add(bookList.elementAt(index));
                       PersistentNavBarNavigator.pushNewScreen(
                         context,
                         screen: BookSinglePage(
