@@ -1,11 +1,17 @@
 import 'package:book_reader/Screens/Model/book.dart';
+import 'package:book_reader/Screens/Model/bookbloc/bookbloc_bloc.dart';
 import 'package:book_reader/Screens/my_homepage.dart';
+import 'package:book_reader/Screens/pdf_view.dart';
 import 'package:book_reader/Utils/my_librabry.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class BookSinglePage extends StatefulWidget {
   final Book book;
+  final int bookIndex;
   const BookSinglePage({
     required this.book,
+    required this.bookIndex,
     Key? key,
   }) : super(key: key);
 
@@ -193,7 +199,19 @@ class _BookSinglePageState extends State<BookSinglePage> {
                         backgroundColor:
                             MaterialStateProperty.all(MyCustomColors.green),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        PersistentNavBarNavigator.pushNewScreen(
+                          context,
+                          screen: BlocProvider<BookblocBloc>.value(
+                            value: BlocProvider.of<BookblocBloc>(context),
+                            child: PDFViewPage(
+                              book: widget.book,
+                              bookIndex: widget.bookIndex,
+                            ),
+                          ),
+                          withNavBar: false, // OPTIONAL VALUE. True by default.
+                        );
+                      },
                       child: const Text("Read"),
                     ),
                   ),

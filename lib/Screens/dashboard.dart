@@ -1,6 +1,8 @@
 import 'package:book_reader/Screens/BookScreen/book_single.dart';
+import 'package:book_reader/Screens/Model/bookbloc/bookbloc_bloc.dart';
 import 'package:book_reader/Utils/global_variable.dart';
 import 'package:book_reader/Utils/my_librabry.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class DashBoard extends StatefulWidget {
@@ -90,8 +92,12 @@ class _DashBoardState extends State<DashBoard> {
                       bookLibrary.add(bookList.elementAt(index));
                       PersistentNavBarNavigator.pushNewScreen(
                         context,
-                        screen: BookSinglePage(
-                          book: bookList.elementAt(index),
+                        screen: BlocProvider<BookblocBloc>.value(
+                          value: context.read<BookblocBloc>(),
+                          child: BookSinglePage(
+                            book: bookList.elementAt(index),
+                            bookIndex: index,
+                          ),
                         ),
                         withNavBar: false, // OPTIONAL VALUE. True by default.
                       );

@@ -6,10 +6,10 @@ List<Book> bookList = [
     expert:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
     imgPath: "assets/bookscover/bc1.jpg",
-    pdfPath: "assets/pdfs/book1.pdf",
+    pdfPath:
+        "https://github.com/ScerIO/packages.flutter/raw/fd0c92ac83ee355255acb306251b1adfeb2f2fd6/packages/native_pdf_renderer/example/assets/sample.pdf",
     rating: 3,
     readPercentage: 0,
-    lastPageReaded: 5,
     pages: 156,
     language: "ENG",
   ),
@@ -18,7 +18,8 @@ List<Book> bookList = [
     expert:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
     imgPath: "assets/bookscover/bc2.jpg",
-    pdfPath: "assets/pdfs/book1.pdf",
+    pdfPath:
+        "https://github.com/ScerIO/packages.flutter/raw/fd0c92ac83ee355255acb306251b1adfeb2f2fd6/packages/native_pdf_renderer/example/assets/sample.pdf",
     rating: 3,
     readPercentage: 0,
     pages: 156,
@@ -29,7 +30,8 @@ List<Book> bookList = [
     expert:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
     imgPath: "assets/bookscover/bc3.jpg",
-    pdfPath: "assets/pdfs/book1.pdf",
+    pdfPath:
+        "https://github.com/ScerIO/packages.flutter/raw/fd0c92ac83ee355255acb306251b1adfeb2f2fd6/packages/native_pdf_renderer/example/assets/sample.pdf",
     rating: 3,
     pages: 156,
     language: "ENG",
@@ -39,7 +41,8 @@ List<Book> bookList = [
     expert:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
     imgPath: "assets/bookscover/bc4.jpg",
-    pdfPath: "assets/pdfs/book1.pdf",
+    pdfPath:
+        "https://github.com/ScerIO/packages.flutter/raw/fd0c92ac83ee355255acb306251b1adfeb2f2fd6/packages/native_pdf_renderer/example/assets/sample.pdf",
     rating: 3,
     pages: 156,
     language: "ENG",
@@ -49,7 +52,8 @@ List<Book> bookList = [
     expert:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
     imgPath: "assets/bookscover/bc5.jpg",
-    pdfPath: "assets/pdfs/book1.pdf",
+    pdfPath:
+        "https://github.com/ScerIO/packages.flutter/raw/fd0c92ac83ee355255acb306251b1adfeb2f2fd6/packages/native_pdf_renderer/example/assets/sample.pdf",
     rating: 3,
     pages: 156,
     language: "ENG",

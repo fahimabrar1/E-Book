@@ -20,5 +20,10 @@ class BookblocBloc extends Bloc<BookblocEvent, BookblocState> {
 
       emit(BookblocInitial(event.bookListBE));
     });
+
+    on<OnRefreshBE>((event, emit) {
+      emit(BookblocRefreshState());
+      emit(BookblocInitial(event.bookListBE));
+    });
   }
 }

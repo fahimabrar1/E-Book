@@ -22,3 +22,8 @@ class BookblocResetState extends BookblocState {
   @override
   List<Object?> get props => [];
 }
+
+class BookblocRefreshState extends BookblocState {
+  @override
+  List<Object?> get props => [];
+}

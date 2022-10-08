@@ -75,47 +75,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(final BuildContext context) => Scaffold(
-        // drawer: Drawer(
-        //   child: Center(
-        //     child: Column(
-        //       mainAxisAlignment: MainAxisAlignment.center,
-        //       children: const <Widget>[
-        //         Text("This is the Drawer"),
-        //       ],
-        //     ),
-        //   ),
-        // ),
         body: PersistentTabView(
           context,
           controller: _controller,
           screens: _buildScreens(),
+          stateManagement: true,
           items: _navBarsItems(),
           resizeToAvoidBottomInset: true,
           navBarHeight: MediaQuery.of(context).viewInsets.bottom > 0
               ? 0.0
               : kBottomNavigationBarHeight,
           bottomScreenMargin: 0,
-          // onWillPop: (final context) async {
-          //   await showDialog(
-          //     context: context,
-          //     useSafeArea: true,
-          //     builder: (final context) => Container(
-          //       height: 50,
-          //       width: 50,
-          //       color: Colors.white,
-          //       child: ElevatedButton(
-          //         child: const Text("Close"),
-          //         onPressed: () {
-          //           Navigator.pop(context);
-          //         },
-          //       ),
-          //     ),
-          //   );
-          //   return false;
-          // },
-          // selectedTabScreenContext: (final context) {
-          //   testContext = context;
-          // },
+
           backgroundColor: Colors.white,
           hideNavigationBar: _hideNavBar,
           decoration: const NavBarDecoration(
@@ -132,8 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
           screenTransitionAnimation: const ScreenTransitionAnimation(
             animateTabTransition: true,
           ),
-          navBarStyle: NavBarStyle
-              .style11, // Choose the nav bar style with this property
+          navBarStyle:
+              NavBarStyle.style8, // Choose the nav bar style with this property
         ),
       );
 }

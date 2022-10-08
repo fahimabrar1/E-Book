@@ -9,3 +9,10 @@ class OnChangeBookPercentageBE extends BookblocEvent {
   @override
   List<Object?> get props => [this.bookListBE];
 }
+
+class OnRefreshBE extends BookblocEvent {
+  late List<Book> bookListBE;
+  OnRefreshBE(this.bookListBE);
+  @override
+  List<Object?> get props => [this.bookListBE];
+}
