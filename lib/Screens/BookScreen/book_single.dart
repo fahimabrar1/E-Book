@@ -202,8 +202,8 @@ class _BookSinglePageState extends State<BookSinglePage> {
                       onPressed: () {
                         PersistentNavBarNavigator.pushNewScreen(
                           context,
-                          screen: BlocProvider<BookblocBloc>.value(
-                            value: BlocProvider.of<BookblocBloc>(context),
+                          screen: BlocProvider.value(
+                            value: context.read<BookblocBloc>(),
                             child: PDFViewPage(
                               book: widget.book,
                               bookIndex: widget.bookIndex,

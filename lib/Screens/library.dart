@@ -26,7 +26,7 @@ class _LibraryPageState extends State<LibraryPage> {
   ReceivePort receivePort = ReceivePort();
   int progress = 0;
   Map<String, int> download_map = {};
-
+  late BookblocBloc bloc;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -122,8 +122,8 @@ class _LibraryPageState extends State<LibraryPage> {
             onPressed: () {
               PersistentNavBarNavigator.pushNewScreen(
                 context,
-                screen: BlocProvider<BookblocBloc>.value(
-                  value: context.read<BookblocBloc>(),
+                screen: BlocProvider.value(
+                  value: bloc,
                   child: PDFViewPage(
                     book: bookList.elementAt(index),
                     bookIndex: index,
@@ -152,6 +152,8 @@ class _LibraryPageState extends State<LibraryPage> {
 
   @override
   void initState() {
+    bloc = BlocProvider.of<BookblocBloc>(context);
+
     IsolateNameServer.registerPortWithName(
         receivePort.sendPort, 'downloader_send_port');
     receivePort.listen((dynamic data) {

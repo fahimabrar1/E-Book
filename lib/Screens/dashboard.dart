@@ -19,6 +19,14 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  late BookblocBloc bloc;
+  @override
+  void initState() {
+    // TODO: implement initState
+    bloc = BlocProvider.of<BookblocBloc>(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,13 +100,17 @@ class _DashBoardState extends State<DashBoard> {
                       bookLibrary.add(bookList.elementAt(index));
                       PersistentNavBarNavigator.pushNewScreen(
                         context,
-                        screen: BlocProvider<BookblocBloc>.value(
-                          value: context.read<BookblocBloc>(),
+                        screen: BlocProvider.value(
+                          value: bloc,
                           child: BookSinglePage(
                             book: bookList.elementAt(index),
                             bookIndex: index,
                           ),
                         ),
+                        // screen: BookSinglePage(
+                        //   book: bookList.elementAt(index),
+                        //   bookIndex: index,
+                        // ),
                         withNavBar: false, // OPTIONAL VALUE. True by default.
                       );
                     },

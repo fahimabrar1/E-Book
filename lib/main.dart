@@ -10,7 +10,16 @@ void InitProj() async {
   // Plugin must be initialized before using
   await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
 
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<BookblocBloc>(
+          create: (BuildContext context) => BookblocBloc(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 void main() {
@@ -24,15 +33,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'E-Book',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MultiBlocProvider(providers: [
-        BlocProvider<BookblocBloc>(
-          create: (BuildContext context) => BookblocBloc(),
+        debugShowCheckedModeBanner: false,
+        title: 'E-Book',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
-      ], child: const MyHomePage()),
-    );
+        home: const MyHomePage());
   }
 }

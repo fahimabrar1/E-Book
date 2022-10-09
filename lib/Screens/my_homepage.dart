@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
           context,
           controller: _controller,
           screens: _buildScreens(),
-          stateManagement: true,
+          stateManagement: false,
           items: _navBarsItems(),
           resizeToAvoidBottomInset: true,
           navBarHeight: MediaQuery.of(context).viewInsets.bottom > 0

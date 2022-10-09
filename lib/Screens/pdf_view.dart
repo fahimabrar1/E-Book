@@ -53,9 +53,9 @@ class _PDFViewPageState extends State<PDFViewPage> {
     } else {
       final basepath = await getExternalStorageDirectory();
       log("Opening Via Local");
-      log("path: " + basepath!.path);
+      log("path: " + basepath!.path + "/book1.pdf");
 
-      doc = PdfDocument.openFile(basepath.path);
+      doc = PdfDocument.openFile(basepath.path + "/book1.pdf");
       log("Success");
     }
     log("Return");
@@ -92,8 +92,10 @@ class _PDFViewPageState extends State<PDFViewPage> {
                               );
                             } else if (state == PdfLoadingState.loading) {
                               return Row(
-                                children: [
-                                  Expanded(child: Center(child: SizedBox())),
+                                children: const [
+                                  Expanded(
+                                      child: Center(
+                                          child: CircularProgressIndicator())),
                                 ],
                               );
                             } else {
@@ -114,7 +116,7 @@ class _PDFViewPageState extends State<PDFViewPage> {
                           }),
                     )
                   : Row(
-                      children: [Expanded(child: SizedBox())],
+                      children: const [Expanded(child: SizedBox())],
                     ),
               Expanded(
                 child: (intiVIew)
