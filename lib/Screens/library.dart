@@ -26,6 +26,7 @@ class _LibraryPageState extends State<LibraryPage> {
   ReceivePort receivePort = ReceivePort();
   int progress = 0;
   Map<String, int> download_map = {};
+  late List<Book> myLibBooks;
   late BookblocBloc bloc;
   @override
   Widget build(BuildContext context) {
@@ -44,13 +45,15 @@ class _LibraryPageState extends State<LibraryPage> {
         const SizedBox(
           height: 20,
         ),
-        ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: bookList.length,
-            itemBuilder: (itemBuilder, index) {
-              return bookPanel(index);
-            })
+        (myLibBooks.isNotEmpty)
+            ? ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: myLibBooks.length,
+                itemBuilder: (itemBuilder, index) {
+                  return bookPanel(index);
+                })
+            : Center(child: const Text("No Books Downloaded")),
       ],
     );
   }
@@ -63,13 +66,13 @@ class _LibraryPageState extends State<LibraryPage> {
             height: 60,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Image.asset(bookList.elementAt(index).imgPath),
+              child: Image.asset(myLibBooks.elementAt(index).imgPath),
             ),
           ),
           SizedBox(
             width: 120,
             child: Text(
-              bookList.elementAt(index).name,
+              myLibBooks.elementAt(index).name,
               maxLines: 2,
               overflow: TextOverflow.fade,
               style: MyCustomFonts.getRubik(
@@ -137,14 +140,14 @@ class _LibraryPageState extends State<LibraryPage> {
               color: MyCustomColors.lightBrown,
             ),
           ),
-          (!bookList.elementAt(index).downloaded)
-              ? IconButton(
-                  onPressed: () {
-                    downloadFile(index);
-                  },
-                  icon: const Icon(Icons.download),
-                )
-              : Container(),
+          // (!myLibBooks.elementAt(index).downloaded)
+          //     ? IconButton(
+          //         onPressed: () {
+          //           downloadFile(index);
+          //         },
+          //         icon: const Icon(Icons.download),
+          //       )
+          //     : Container(),
         ],
       ),
     );
@@ -153,7 +156,8 @@ class _LibraryPageState extends State<LibraryPage> {
   @override
   void initState() {
     bloc = BlocProvider.of<BookblocBloc>(context);
-
+    myLibBooks = getLibBooks();
+    log("book count: " + myLibBooks.length.toString());
     IsolateNameServer.registerPortWithName(
         receivePort.sendPort, 'downloader_send_port');
     receivePort.listen((dynamic data) {
@@ -221,5 +225,15 @@ class _LibraryPageState extends State<LibraryPage> {
         BlocProvider.of<BookblocBloc>(context).add(OnRefreshBE(bookList));
       });
     }
+  }
+
+  List<Book> getLibBooks() {
+    List<Book> bookLs = [];
+    for (var element in bookList) {
+      if (element.downloaded == true) {
+        bookLs.add(element);
+      }
+    }
+    return bookLs;
   }
 }
