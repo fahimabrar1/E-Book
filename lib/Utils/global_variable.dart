@@ -12,6 +12,7 @@ List<Book> bookList = [
     readPercentage: 0,
     pages: 156,
     language: "ENG",
+    downloaded: false,
   ),
   Book(
     name: "Cogheart",

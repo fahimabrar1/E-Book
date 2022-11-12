@@ -11,7 +11,7 @@ class Book {
   String language;
   late String id;
   late int? lastPageReaded;
-  late bool downloaded;
+  late bool? downloaded;
   late double? readPercentage;
 
   Book({
@@ -24,9 +24,10 @@ class Book {
     required this.language,
     this.readPercentage,
     this.lastPageReaded,
+    this.downloaded,
   }) {
     id = getBase64RandomString(6);
-    downloaded = false;
+    downloaded ??= false;
     readPercentage ??= 0;
     lastPageReaded ??= 1;
     print(id.toString());

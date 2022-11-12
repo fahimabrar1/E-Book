@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:book_reader/Screens/Model/book.dart';
 import 'package:book_reader/Screens/Model/bookbloc/bookbloc_bloc.dart';
@@ -45,17 +46,26 @@ class _PDFViewPageState extends State<PDFViewPage> {
 
   Future<Future<PdfDocument>> getPath() async {
     Future<PdfDocument> doc;
-    if (!widget.book.downloaded) {
+    if (!widget.book.downloaded!) {
       log("Opening Via Network");
-      log("path: " + widget.book.pdfPath);
+      log("path: ${widget.book.pdfPath}");
       doc = PdfDocument.openData(InternetFile.get(widget.book.pdfPath));
       log("Success");
     } else {
-      final basepath = await getExternalStorageDirectory();
-      log("Opening Via Local");
-      log("path: " + basepath!.path + "/book1.pdf");
+      Directory? basepath = await getExternalStorageDirectory();
+      final _basepath = await getApplicationDocumentsDirectory();
+      // final _basepath = await getExternalStorageDirectories();
+      // log("V: ");
+      log("V: ${basepath!.absolute}");
 
-      doc = PdfDocument.openFile(basepath.path + "/book1.pdf");
+      // _basepath.forEach((element) {
+      //   log("V: " + element.path);
+      // });
+
+      log("Opening Via Local");
+      log("path: ${basepath.absolute.path}/book1.pdf");
+
+      doc = PdfDocument.openFile(basepath.absolute.path + '/book1.pdf');
       log("Success");
     }
     log("Return");
@@ -78,7 +88,7 @@ class _PDFViewPageState extends State<PDFViewPage> {
 
                           // When `loadingState != PdfLoadingState.success`  `pagesCount` equals null_
                           builder: (_, state, loadingState, pagesCount) {
-                            log("PdfLoadingState " + state.toString());
+                            log("PdfLoadingState $state");
 
                             if (state == PdfLoadingState.success) {
                               log("PdfLoadingState.success");
